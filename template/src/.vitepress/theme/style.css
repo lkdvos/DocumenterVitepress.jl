@@ -25,6 +25,15 @@ scroll-behavior: smooth;
 --vp-font-family-mono: JuliaMono-Regular, monospace;
 }
 
+/* The font stack above names families that are not loaded as webfonts, so on Linux
+   fontconfig may satisfy the request with a single regular face. VitePress' reset sets
+   `font-synthesis: style`, which permits a synthesised oblique but not a synthesised
+   weight, so `font-weight: 700` then paints at regular weight. Allow weight synthesis
+   so bold renders as bold wherever no real bold face is available. */
+body {
+  font-synthesis: weight style;
+}
+
 /* Disable contextual alternates (kind of like ligatures but different) in monospace, 
  which turns `/>` to an up arrow and `|>` (the Julia pipe symbol) to an up arrow as well. */
 .mono-no-substitutions {
